@@ -15,6 +15,14 @@ class Game:
         # self.font = pygame.font.Font('Arial', 32)
         self.running = True
 
+    def createTilemap(self):
+        for y, row in enumerate(tilemap):
+            for x, column in enumerate(row):
+                if column == 'B':
+                    Block(self, x, y)
+                if column == 'P':
+                    Player(self, x, y)
+
     def new(self):
         self.playing = True
 
@@ -22,8 +30,7 @@ class Game:
         self.blocks = pygame.sprite.LayeredUpdates()
         self.enemies = pygame.sprite.LayeredUpdates()
         self.attacks = pygame.sprite.LayeredUpdates()
-
-        self.player = Player(self, 1, 2)
+        self.createTilemap()
 
     def events(self):
         # game loop events
