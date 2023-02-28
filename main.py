@@ -12,12 +12,14 @@ class Game:
         pygame.init()
         self.screen = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
         self.clock = pygame.time.Clock()
-        # self.font = pygame.font.Font('Arial', 32)
         self.running = True
+        self.character_spritesheet = Spritesheet('img/character.png')
+        self.terrain_spritesheet = Spritesheet('img/terrain.png')
 
     def createTilemap(self):
         for y, row in enumerate(tilemap):
             for x, column in enumerate(row):
+                Ground(self, x, y)
                 if column == 'B':
                     Block(self, x, y)
                 if column == 'P':
@@ -41,7 +43,6 @@ class Game:
 
     def update(self):
         self.all_sprites.update()
-
 
     def draw(self):
         self.screen.fill(BLACK)
