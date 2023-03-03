@@ -1,11 +1,13 @@
 WIN_WIDTH  = 640
 WIN_HEIGHT = 480
 
-PLAYER_LAYER = 3
-BLOCK_LAYER = 2
+PLAYER_LAYER = 4
+ENEMY_LAYER  = 3
+BLOCK_LAYER  = 2
 GROUND_LAYER = 1
 
 PLAYER_SPEED = 3
+ENEMY_SPEED  = 2
 
 TILESIZE = 32
 FPS = 60
@@ -16,7 +18,7 @@ BLUE  = (  0,   0, 255)
 
 tilemap = [
     'BBBBBBBBBBBBBBBBBBBB',
-    'B                  B',
+    'B  E               B',
     'B                  B',
     'B   BBBB           B',
     'B                  B',
@@ -27,7 +29,7 @@ tilemap = [
     'B       B          B',
     'B       B          B',
     'B                  B',
-    'B                  B',
+    'B      E           B',
     'B                  B',
     'BBBBBBBBBBBBBBBBBBBB',
 ]
