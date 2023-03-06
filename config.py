@@ -9,12 +9,14 @@ GROUND_LAYER = 1
 PLAYER_SPEED = 3
 ENEMY_SPEED  = 2
 
-TILESIZE = 32
+TILESIZE = 16
 FPS = 60
 
+WHITE = (255, 255, 255)
 RED   = (255,   0,   0)
 BLACK = (  0,   0,   0)
 BLUE  = (  0,   0, 255)
+GREEN = (  0, 255,   0)
 
 tilemap = [
     'BBBBBBBBBBBBBBBBBBBB',
