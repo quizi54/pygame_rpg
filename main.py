@@ -19,6 +19,7 @@ class Game:
         self.enemy_spritesheet = Spritesheet('img/Slime 01.png')
         self.intro_background = pygame.image.load('img/introbackground.png')
         self.gameover_background = pygame.image.load('img/gameover.png')
+        self.attack_spritesheet = Spritesheet('img/attack1.png')
 
     def createTilemap(self):
         for y, row in enumerate(tilemap):
@@ -27,7 +28,7 @@ class Game:
                 if column == 'B':
                     Block(self, x, y)
                 if column == 'P':
-                    Player(self, x, y)
+                    self.player = Player(self, x, y)
                 if column == 'E':
                     Enemy(self, x, y)
 
@@ -46,6 +47,9 @@ class Game:
             if event.type == pygame.QUIT:
                 self.playing = False
                 self.running = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    Attack(self, self.player.rect.x, self.player.rect.y)
 
     def update(self):
         self.all_sprites.update()
@@ -68,7 +72,7 @@ class Game:
         text = self.font.render('Game Over', False, BLACK)
         text_rect = text.get_rect( center = (WIN_WIDTH / 2, WIN_HEIGHT / 2))
 
-        restart_button = Button(10, WIN_HEIGHT - 60, 120, 50, WHITE, BLACK, 'Restart', 32)
+        restart_button = Button(10, WIN_HEIGHT - 60, 160, 50, WHITE, BLACK, 'Restart', 32)
 
         for sprite in self.all_sprites:
             sprite.kill()
