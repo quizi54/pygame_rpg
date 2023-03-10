@@ -2,9 +2,10 @@
 # -*- coding=utf-8 -*-
 
 import pygame
+import sys
 from sprites import *
 from config import *
-import sys
+from utils import *
 
 
 class Game:
@@ -13,7 +14,7 @@ class Game:
         self.screen = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
         self.clock = pygame.time.Clock()
         self.running = True
-        self.font = pygame.font.Font('PixeloidMono.ttf', 32)
+        self.font = pygame.font.Font('joystix monospace.otf', 32)
         self.character_spritesheet = Spritesheet('img/Hero 01.png')
         self.terrain_spritesheet = Spritesheet('img/Solaria Demo Update 01.png')
         self.enemy_spritesheet = Spritesheet('img/Slime 01.png')
@@ -22,15 +23,23 @@ class Game:
         self.attack_spritesheet = Spritesheet('img/attack1.png')
 
     def createTilemap(self):
-        for y, row in enumerate(tilemap):
-            for x, column in enumerate(row):
-                Ground(self, x, y)
-                if column == 'B':
-                    Block(self, x, y)
-                if column == 'P':
-                    self.player = Player(self, x, y)
-                if column == 'E':
-                    Enemy(self, x, y)
+        layouts = {
+            'ground': import_csv_layout('levels/level00_Ground.csv'),
+            'bushes': import_csv_layout('levels/level00_Bushes.csv'),
+            'player': import_csv_layout('levels/level00_Player.csv'),
+        }
+        for style, layout in layouts.items():
+            for row_index, row in enumerate(layout):
+                for col_index, col in enumerate(row):
+                    if col != '-1':
+                        x = col_index
+                        y = row_index
+                        if style == 'bushes':
+                            Decoration(self, x, y, col)
+                        if style == 'ground':
+                            Ground(self, x, y, col)
+                        if style == 'player':
+                            self.player = Player(self, x, y)
 
     def new(self):
         self.playing = True
@@ -98,8 +107,9 @@ class Game:
         
         title = self.font.render('RPG Game', True, BLACK)
         title_rect = title.get_rect(x = 10, y = 10)
+        title_rect.x = int(WIN_WIDTH / 2 - title_rect.width / 2)
 
-        play_button = Button(10, 50, 100, 50, WHITE, BLACK, 'Play', 32)
+        play_button = Button(270, 215, 100, 50, RED, None, 'PLAY', 32)
 
         while intro:
             for event in pygame.event.get():

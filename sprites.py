@@ -5,7 +5,7 @@ import math, random
 
 class Spritesheet:
     def __init__(self, file):
-        self.sheet = pygame.image.load(file).convert()
+        self.sheet = pygame.image.load(file).convert_alpha()
 
     def get_sprite(self, x, y, width, height, bg):
         """
@@ -37,9 +37,7 @@ class Player(pygame.sprite.Sprite):
         self.facing = 'down'
         self.animation_loop = 1
 
-        #self.image = self.game.character_spritesheet.get_sprite(3, 2, self.width, self.height)
-        self.image = self.game.character_spritesheet.get_sprite(0, 0, self.width, self.height, WHITE)
-
+        self.image = self.game.character_spritesheet.get_sprite(0, 0, self.width, self.height, BLACK)
         self.rect = self.image.get_rect()
         self.rect.x = self.x
         self.rect.y = self.y
@@ -248,7 +246,7 @@ class Block(pygame.sprite.Sprite):
         self.rect.y = self.y
 
 class Ground(pygame.sprite.Sprite):
-    def __init__(self, game, x, y):
+    def __init__(self, game, x, y, tile_id):
         self.game = game
         self._layer = GROUND_LAYER
         self.groups = self.game.all_sprites
@@ -259,10 +257,28 @@ class Ground(pygame.sprite.Sprite):
         self.width = TILESIZE
         self.height = TILESIZE
 
-        self.image = self.game.terrain_spritesheet.get_sprite(80, 0, self.width, self.height, BLACK)
+        self.tile_id = int(tile_id)
+
+        tile_x, tile_y = self.get_tile_coords()
+
+        self.image = self.game.terrain_spritesheet.get_sprite(tile_x, tile_y, self.width, self.height, BLACK)
         self.rect = self.image.get_rect()
         self.rect.x = self.x
         self.rect.y = self.y
+
+    def get_tile_coords(self):
+        if self.tile_id > 27:
+            y = (self.tile_id // 27) * TILESIZE
+            x = (self.tile_id - 28 * (self.tile_id // 27)) * TILESIZE
+        else:
+            y = 0
+            x = self.tile_id * TILESIZE
+        return x, y
+
+class Decoration(Ground):
+    def __init__(self, game, x, y, tile_id):
+        super().__init__(game, x, y, tile_id)
+        self._layer = BLOCK_LAYER
 
 class Button:
     def __init__(self, x, y, width, height, fg, bg, content, fontsize):
@@ -274,11 +290,17 @@ class Button:
         self.height = height
         self.fg = fg 
         self.bg = bg
-        self.image = pygame.Surface((self.width, self.height))
-        self.image.fill(self.bg)
+        
+        if bg is not None:
+            self.image = pygame.Surface((self.width, self.height))
+            self.image.fill(self.bg)
+        else:
+            self.image = pygame.Surface((self.width, self.height), flags=pygame.SRCALPHA)
+        
         self.rect = self.image.get_rect()
         self.rect.x = self.x
         self.rect.y = self.y
+        
         self.text = self.font.render(self.content, False, self.fg)
         self.text_rect = self.text.get_rect(center=(self.width / 2, self.height / 2))
         self.image.blit(self.text, self.text_rect)
