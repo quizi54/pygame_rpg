@@ -14,13 +14,13 @@ class Game:
         self.screen = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
         self.clock = pygame.time.Clock()
         self.running = True
-        self.font = pygame.font.Font('joystix monospace.otf', 32)
-        self.character_spritesheet = Spritesheet('img/Hero 01.png')
-        self.terrain_spritesheet = Spritesheet('img/Solaria Demo Update 01.png')
-        self.enemy_spritesheet = Spritesheet('img/Slime 01.png')
-        self.intro_background = pygame.image.load('img/introbackground.png')
-        self.gameover_background = pygame.image.load('img/gameover.png')
-        self.attack_spritesheet = Spritesheet('img/attack1.png')
+        self.font = pygame.font.Font('assets/joystix monospace.otf', 32)
+        self.character_spritesheet = Spritesheet('assets/img/Hero 01.png')
+        self.terrain_spritesheet = Spritesheet('assets/img/Solaria Demo Update 01.png')
+        self.enemy_spritesheet = Spritesheet('assets/img/Slime 01.png')
+        self.intro_background = pygame.image.load('assets/img/introbackground.png')
+        self.gameover_background = pygame.image.load('assets/img/gameover.png')
+        self.attack_spritesheet = Spritesheet('assets/img/attack1.png')
 
     def createTilemap(self):
         layouts = {

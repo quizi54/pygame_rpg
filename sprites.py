@@ -282,7 +282,7 @@ class Decoration(Ground):
 
 class Button:
     def __init__(self, x, y, width, height, fg, bg, content, fontsize):
-        self.font = pygame.font.Font('PixeloidMono.ttf', fontsize)
+        self.font = pygame.font.Font('assets/joystix monospace.otf', fontsize)
         self.content = content
         self.x = x
         self.y = y
