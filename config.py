@@ -6,7 +6,7 @@ ENEMY_LAYER  = 3
 BLOCK_LAYER  = 2
 GROUND_LAYER = 1
 
-PLAYER_SPEED = 2
+PLAYER_SPEED = 1
 ENEMY_SPEED  = 1
 
 TILESIZE = 16
@@ -18,20 +18,12 @@ BLACK = (  0,   0,   0)
 BLUE  = (  0,   0, 255)
 GREEN = (  0, 255,   0)
 
-tilemap = [
-    'BBBBBBBBBBBBBBBBBBBB',
-    'B  E               B',
-    'B                  B',
-    'B   BBBB           B',
-    'B                  B',
-    'B         P        B',
-    'B                  B',
-    'B                  B',
-    'B     BBB          B',
-    'B       B          B',
-    'B       B          B',
-    'B                  B',
-    'B      E           B',
-    'B                  B',
-    'BBBBBBBBBBBBBBBBBBBB',
-]
+ASSETS = {
+    'FONT':             'assets/joystix monospace.otf',
+    'HERO':             'assets/img/Hero 01.png',
+    'ENEMY':            'assets/img/Slime 01.png',
+    'TERRAIN':          'assets/img/Solaria Demo Update 01.png',
+    'INTRO_BG':         'assets/img/introbackground.png',
+    'GAMEOVER_BG':      'assets/img/gameover.png',
+    'ATTACK_PARTICLES': 'assets/img/attack1.png'
+}

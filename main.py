@@ -3,6 +3,7 @@
 
 import pygame
 import sys
+from entitys import *
 from sprites import *
 from config import *
 from utils import *
@@ -14,18 +15,20 @@ class Game:
         self.screen = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
         self.clock = pygame.time.Clock()
         self.running = True
-        self.font = pygame.font.Font('assets/joystix monospace.otf', 32)
-        self.character_spritesheet = Spritesheet('assets/img/Hero 01.png')
-        self.terrain_spritesheet = Spritesheet('assets/img/Solaria Demo Update 01.png')
-        self.enemy_spritesheet = Spritesheet('assets/img/Slime 01.png')
-        self.intro_background = pygame.image.load('assets/img/introbackground.png')
-        self.gameover_background = pygame.image.load('assets/img/gameover.png')
-        self.attack_spritesheet = Spritesheet('assets/img/attack1.png')
+        self.font = pygame.font.Font(ASSETS['FONT'], 32)
+        self.character_spritesheet = Spritesheet(ASSETS['HERO'])
+        self.terrain_spritesheet = Spritesheet(ASSETS['TERRAIN'])
+        self.enemy_spritesheet = Spritesheet(ASSETS['ENEMY'])
+        self.intro_background = pygame.image.load(ASSETS['INTRO_BG'])
+        self.gameover_background = pygame.image.load(ASSETS['GAMEOVER_BG'])
+        self.attack_spritesheet = Spritesheet(ASSETS['ATTACK_PARTICLES'])
 
     def createTilemap(self):
         layouts = {
             'ground': import_csv_layout('levels/level00_Ground.csv'),
             'bushes': import_csv_layout('levels/level00_Bushes.csv'),
+            'boundary': import_csv_layout('levels/level00_Boundary.csv'),
+            'enemies': import_csv_layout('levels/level00_Enemys.csv'),
             'player': import_csv_layout('levels/level00_Player.csv'),
         }
         for style, layout in layouts.items():
@@ -38,16 +41,22 @@ class Game:
                             Decoration(self, x, y, col)
                         if style == 'ground':
                             Ground(self, x, y, col)
+                        if style == 'boundary':
+                            Boundary(self, x, y)
+                        if style == 'enemies':
+                            Enemy(self, x, y)
                         if style == 'player':
                             self.player = Player(self, x, y)
 
     def new(self):
         self.playing = True
 
-        self.all_sprites = pygame.sprite.LayeredUpdates()
-        self.blocks = pygame.sprite.LayeredUpdates()
-        self.enemies = pygame.sprite.LayeredUpdates()
-        self.attacks = pygame.sprite.LayeredUpdates()
+        self.visible_sprites = pygame.sprite.LayeredUpdates()
+        self.boundary = pygame.sprite.LayeredUpdates()
+        self.blocks   = pygame.sprite.LayeredUpdates()
+        self.enemies  = pygame.sprite.LayeredUpdates()
+        self.attacks  = pygame.sprite.LayeredUpdates()
+        self.attackable_sprites = pygame.sprite.Group()
         self.createTilemap()
 
     def events(self):
@@ -57,15 +66,32 @@ class Game:
                 self.playing = False
                 self.running = False
             if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    self.playing = False
+                    self.running = False
                 if event.key == pygame.K_SPACE:
                     Attack(self, self.player.rect.x, self.player.rect.y)
 
     def update(self):
-        self.all_sprites.update()
+        self.visible_sprites.update()
+        self.player_attack_logic()
+
+    def player_attack_logic(self):
+        if self.attacks:
+            for attack_sprite in self.attacks:
+                collision_sprites = pygame.sprite.spritecollide(attack_sprite, self.attackable_sprites, False)
+                if collision_sprites:
+                    for target_sprite in collision_sprites:
+                        target_sprite.hp -= self.player.damage
+                        if target_sprite.hp <= 0:
+                            self.player.experience += target_sprite.exp_cost
+                            self.player.money += target_sprite.money
+                            target_sprite.kill()
+                            print(f'exp: {self.player.experience}  :: money: {self.player.money}')
 
     def draw(self):
         self.screen.fill(BLACK)
-        self.all_sprites.draw(self.screen)
+        self.visible_sprites.draw(self.screen)
         self.clock.tick(FPS)
         pygame.display.update()
 
@@ -83,7 +109,7 @@ class Game:
 
         restart_button = Button(10, WIN_HEIGHT - 60, 160, 50, WHITE, BLACK, 'Restart', 32)
 
-        for sprite in self.all_sprites:
+        for sprite in self.visible_sprites:
             sprite.kill()
 
         while self.running:

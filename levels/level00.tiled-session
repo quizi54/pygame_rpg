@@ -8,9 +8,17 @@
         "."
     ],
     "fileStates": {
+        "Hero 01.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 3
+        },
+        "Slime.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "Solaria.tsx": {
             "scaleInDock": 2,
-            "scaleInEditor": 1
+            "scaleInEditor": 2
         },
         "attack1.tsx": {
             "scaleInDock": 1,
@@ -18,10 +26,10 @@
         },
         "level00.tmx": {
             "scale": 2,
-            "selectedLayer": 0,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 235.75,
-                "y": 170.5
+                "x": 238,
+                "y": 139
             }
         },
         "plains.tsx": {
@@ -30,21 +38,24 @@
         }
     },
     "last.exportedFilePath": "C:/Users/днс/Desktop/codes/pygame_rpg/levels",
-    "last.imagePath": "C:/Users/днс/Desktop/codes/pygame_rpg/img",
+    "last.imagePath": "C:/Users/днс/Desktop/codes/pygame_rpg/assets/img",
     "map.lastUsedExportFilter": "CSV файлы (*.csv)",
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 16,
     "map.tileWidth": 16,
     "openFiles": [
         "level00.tmx",
-        "plains.tsx",
-        "Solaria.tsx"
+        "Solaria.tsx",
+        "Hero 01.tsx",
+        "Slime.tsx"
     ],
     "project": "level00.tiled-project",
     "recentFiles": [
+        "Slime.tsx",
+        "Hero 01.tsx",
         "Solaria.tsx",
-        "plains.tsx",
         "level00.tmx",
+        "plains.tsx",
         "attack1.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
