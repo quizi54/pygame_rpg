@@ -9,7 +9,7 @@ GROUND_LAYER = 1
 PLAYER_SPEED = 1
 ENEMY_SPEED  = 1
 
-TILESIZE = 16
+TILESIZE = 32
 FPS = 60
 
 WHITE = (255, 255, 255)
@@ -20,9 +20,9 @@ GREEN = (  0, 255,   0)
 
 ASSETS = {
     'FONT':             'assets/joystix monospace.otf',
-    'HERO':             'assets/img/Hero 01.png',
-    'ENEMY':            'assets/img/Slime 01.png',
-    'TERRAIN':          'assets/img/Solaria Demo Update 01.png',
+    'HERO':             'assets/img/32x32/hero.png',
+    'ENEMY':            'assets/img/32x32/slimes.png',
+    'TERRAIN':          'assets/img/32x32/terrain.png',
     'INTRO_BG':         'assets/img/introbackground.png',
     'GAMEOVER_BG':      'assets/img/gameover.png',
     'ATTACK_PARTICLES': 'assets/img/attack1.png'

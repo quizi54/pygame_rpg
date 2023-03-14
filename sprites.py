@@ -65,9 +65,9 @@ class Ground(pygame.sprite.Sprite):
         self.rect.y = self.y
 
     def get_tile_coords(self):
-        if self.tile_id > 27:
-            y = (self.tile_id // 27) * TILESIZE
-            x = (self.tile_id - 28 * (self.tile_id // 27)) * TILESIZE
+        if self.tile_id > 7:
+            y = (self.tile_id // 8) * TILESIZE
+            x = (self.tile_id % 8) * TILESIZE
         else:
             y = 0
             x = self.tile_id * TILESIZE

@@ -25,11 +25,11 @@ class Game:
 
     def createTilemap(self):
         layouts = {
-            'ground': import_csv_layout('levels/level00_Ground.csv'),
-            'bushes': import_csv_layout('levels/level00_Bushes.csv'),
-            'boundary': import_csv_layout('levels/level00_Boundary.csv'),
-            'enemies': import_csv_layout('levels/level00_Enemys.csv'),
-            'player': import_csv_layout('levels/level00_Player.csv'),
+            'ground': import_csv_layout('assets/levels/level00_Ground.csv'),
+            'bushes': import_csv_layout('assets/levels/level00_Bushes.csv'),
+            'boundary': import_csv_layout('assets/levels/level00_Boundary.csv'),
+            'enemies': import_csv_layout('assets/levels/level00_Enemies.csv'),
+            'player': import_csv_layout('assets/levels/level00_Player.csv'),
         }
         for style, layout in layouts.items():
             for row_index, row in enumerate(layout):
