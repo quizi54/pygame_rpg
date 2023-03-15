@@ -25,5 +25,5 @@ ASSETS = {
     'TERRAIN':          'assets/img/32x32/terrain.png',
     'INTRO_BG':         'assets/img/introbackground.png',
     'GAMEOVER_BG':      'assets/img/gameover.png',
-    'ATTACK_PARTICLES': 'assets/img/attack1.png'
+    'ATTACK_PARTICLES': 'assets/img/32x32/attack.png'
 }

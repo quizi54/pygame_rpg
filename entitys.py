@@ -194,29 +194,29 @@ class Attack(pygame.sprite.Sprite):
         self.rect.y = self.y
 
         self.right_animations = [
-                self.game.attack_spritesheet.get_sprite(0, 32, self.width, self.height, BLACK),
-                self.game.attack_spritesheet.get_sprite(16, 32, self.width, self.height, BLACK),
-                self.game.attack_spritesheet.get_sprite(32, 32, self.width, self.height, BLACK),
-                self.game.attack_spritesheet.get_sprite(48, 32, self.width, self.height, BLACK),
-                self.game.attack_spritesheet.get_sprite(64, 32, self.width, self.height, BLACK) ]
+                self.game.attack_spritesheet.get_sprite(0, 64, self.width, self.height, BLACK),
+                self.game.attack_spritesheet.get_sprite(32, 64, self.width, self.height, BLACK),
+                self.game.attack_spritesheet.get_sprite(64, 64, self.width, self.height, BLACK),
+                self.game.attack_spritesheet.get_sprite(96, 64, self.width, self.height, BLACK),
+                self.game.attack_spritesheet.get_sprite(128, 64, self.width, self.height, BLACK) ]
         self.up_animations = [
                 self.game.attack_spritesheet.get_sprite(0, 0, self.width, self.height, BLACK),
-                self.game.attack_spritesheet.get_sprite(16, 0, self.width, self.height, BLACK),
                 self.game.attack_spritesheet.get_sprite(32, 0, self.width, self.height, BLACK),
-                self.game.attack_spritesheet.get_sprite(48, 0, self.width, self.height, BLACK),
-                self.game.attack_spritesheet.get_sprite(64, 0, self.width, self.height, BLACK) ]
+                self.game.attack_spritesheet.get_sprite(64, 0, self.width, self.height, BLACK),
+                self.game.attack_spritesheet.get_sprite(96, 0, self.width, self.height, BLACK),
+                self.game.attack_spritesheet.get_sprite(128, 0, self.width, self.height, BLACK) ]
         self.left_animations = [
-                self.game.attack_spritesheet.get_sprite(0, 48, self.width, self.height, BLACK),
-                self.game.attack_spritesheet.get_sprite(16, 48, self.width, self.height, BLACK),
-                self.game.attack_spritesheet.get_sprite(32, 48, self.width, self.height, BLACK),
-                self.game.attack_spritesheet.get_sprite(48, 48, self.width, self.height, BLACK),
-                self.game.attack_spritesheet.get_sprite(64, 48, self.width, self.height, BLACK) ]
+                self.game.attack_spritesheet.get_sprite(0, 96, self.width, self.height, BLACK),
+                self.game.attack_spritesheet.get_sprite(32, 96, self.width, self.height, BLACK),
+                self.game.attack_spritesheet.get_sprite(64, 96, self.width, self.height, BLACK),
+                self.game.attack_spritesheet.get_sprite(96, 96, self.width, self.height, BLACK),
+                self.game.attack_spritesheet.get_sprite(128, 96, self.width, self.height, BLACK) ]
         self.down_animations = [
-                self.game.attack_spritesheet.get_sprite(0, 16, self.width, self.height, BLACK),
-                self.game.attack_spritesheet.get_sprite(16, 16, self.width, self.height, BLACK),
-                self.game.attack_spritesheet.get_sprite(32, 16, self.width, self.height, BLACK),
-                self.game.attack_spritesheet.get_sprite(48, 16, self.width, self.height, BLACK),
-                self.game.attack_spritesheet.get_sprite(64, 16, self.width, self.height, BLACK) ]
+                self.game.attack_spritesheet.get_sprite(0, 32, self.width, self.height, BLACK),
+                self.game.attack_spritesheet.get_sprite(32, 32, self.width, self.height, BLACK),
+                self.game.attack_spritesheet.get_sprite(64, 32, self.width, self.height, BLACK),
+                self.game.attack_spritesheet.get_sprite(96, 32, self.width, self.height, BLACK),
+                self.game.attack_spritesheet.get_sprite(128, 32, self.width, self.height, BLACK) ]
 
     def update(self):
         self.animate()
