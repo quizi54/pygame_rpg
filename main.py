@@ -51,7 +51,7 @@ class Game:
     def new(self):
         self.playing = True
 
-        self.visible_sprites = pygame.sprite.LayeredUpdates()
+        self.visible_sprites = CameraGroup()
         self.boundary = pygame.sprite.LayeredUpdates()
         self.blocks   = pygame.sprite.LayeredUpdates()
         self.enemies  = pygame.sprite.LayeredUpdates()
@@ -91,7 +91,7 @@ class Game:
 
     def draw(self):
         self.screen.fill(BLACK)
-        self.visible_sprites.draw(self.screen)
+        self.visible_sprites.custom_draw(self.player)
         self.clock.tick(FPS)
         pygame.display.update()
 
